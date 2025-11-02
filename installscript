@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This file, when executed, will promt you to install the following helpful tools/application on your Linux system:
-#sudo, curl, ffmpeg, git, nmap, ufw, wget, vim, and Ollama.
+#sudo, curl, ffmpeg, git, nmap, ufw, wget, and vim.
 
 #Please run this script as root, or use "sudo" if you've already installed it. 
 # If you have already installed sudo on your system, make sure to run sudo bash ./installscript in order to prevent errors.
@@ -43,8 +43,5 @@ ask_install "nmap" "apt install nmap -y"
 ask_install "ufw" "apt install ufw -y"
 ask_install "wget" "apt-get install wget -y"
 ask_install "vim" "apt install vim -y"
-
-# Ollama
-ask_install "Ollama" "curl -fsSL https://ollama.com/install.sh | sh"
 
 echo -e "\e[32m All selected packages have been installed successfully. \e[0m"
