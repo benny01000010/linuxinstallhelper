@@ -9,7 +9,13 @@
 #To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
 
 echo -e "\e[32m Starting linuxinstallhelper script... \e[0m"
+
+BLUE='\033[34m'
+NC='\033[0m' 
+
 cat <<'EOF'
+${BLUE}
+
     ____  _                             ___  _  ___   ___   ___   ___  _  ___  
    / __ \| |__   ___ _ __  _ __  _   _ / _ \/ |/ _ \ / _ \ / _ \ / _ \/ |/ _ \ 
   / / _` | '_ \ / _ \ '_ \| '_ \| | | | | | | | | | | | | | | | | | | | | | | |
@@ -20,6 +26,8 @@ cat <<'EOF'
  | (_) | | | | | (_| | | |_| | | | |_| | |_) |                                 
   \___/|_| |_|  \__, |_|\__|_| |_|\__,_|_.__/                                  
                 |___/                                                          
+
+${NC}
 EOF
 
 echo -e "\e[32m Updating packages...\e[0m"
