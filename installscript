@@ -1,11 +1,26 @@
 #!/bin/bash
 
 # This file, when executed, will promt you to install the following helpful tools/application on your Linux system:
-#sudo, curl, ffmpeg, git, nmap, ufw, wget, and vim.
+#sudo, curl, ffmpeg, git, nmap, ufw, wget, and vim. 
 
 #Please run this script as root, or use "sudo" if you've already installed it. 
 # If you have already installed sudo on your system, make sure to run sudo bash ./installscript in order to prevent errors.
 
+echo "Starting LinuxInstallHelper script..."
+cat <<'EOF'
+    ____  _                             ___  _  ___   ___   ___   ___  _  ___  
+   / __ \| |__   ___ _ __  _ __  _   _ / _ \/ |/ _ \ / _ \ / _ \ / _ \/ |/ _ \ 
+  / / _` | '_ \ / _ \ '_ \| '_ \| | | | | | | | | | | | | | | | | | | | | | | |
+ | | (_| | |_) |  __/ | | | | | | |_| | |_| | | |_| | |_| | |_| | |_| | | |_| |
+  \ \__,_|_.__/ \___|_| |_|_| |_|\__, |\___/|_|\___/ \___/ \___/ \___/|_|\___/ 
+   \____/ __     __ _(_) |_| |__ |___/_| |__                                   
+  / _ \| '_ \   / _` | | __| '_ \| | | | '_ \                                  
+ | (_) | | | | | (_| | | |_| | | | |_| | |_) |                                 
+  \___/|_| |_|  \__, |_|\__|_| |_|\__,_|_.__/                                  
+                |___/                                                          
+EOF
+
+echo "Updating packages..."
 apt update
 apt upgrade -y
 
@@ -38,8 +53,8 @@ ask_install() {
 ask_install "sudo" "apt install sudo -y"
 ask_install "curl" "apt install curl -y"
 ask_install "ffmpeg" "apt install ffmpeg -y"
-ask_install "git" "apt install git -y"
 ask_install "nmap" "apt install nmap -y"
+ask_install "git" "apt install git -y"
 ask_install "ufw" "apt install ufw -y"
 ask_install "wget" "apt-get install wget -y"
 ask_install "vim" "apt install vim -y"
@@ -47,3 +62,4 @@ ask_isntall "nfs" "apt install nfs -y"
 ask_install "samba" "apt install samba -y"
 
 echo -e "\e[32m All selected packages have been installed successfully. \e[0m"
+echo "Exiting LinuxinstallHelper script..."
