@@ -7,7 +7,7 @@ Sudo, curl, ffmpeg, wget, ufw, vim, Git (if not already installed), docker, and 
 # Using this Script
 1. Clone this repository (if you have already installed Git) by running the command git clone https://github.com/benny01000010/linuxinstallhelper
         If you have not already installed Git on your machine, clone the repo on another computer and transfer the files over with a USB or otherwise.
-2. Make the filename that matches your distro executable. For example, if you are running Debian, make debian.sh executable on your new installation.
+2. Make the filename that matches your distro executable (if it isn't already). For example, if you are running Debian, make debian.sh executable on your new installation.
 3. Execute the file as root or using sudo.
 4. Follow the prompts to complete your installation.
 

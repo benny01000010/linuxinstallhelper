@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This file, when executed, will promt you to install the following helpful tools/application on your Linux system:
 #sudo, curl, ffmpeg, git, nmap, ufw, wget, docker, and vim. 
@@ -33,11 +33,16 @@ apt upgrade -y
 
 echo -e "\e[91m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
 echo -e "\e[91m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
-echo -e "\e[91m Continuing with PROMPTED package installer in 3.. \e[0m"
+echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
+sleep 1
+echo -e "\e[91m 4.. \e[0m"
+sleep 1
+echo -e "\e[91m 3.. \e[0m"
 sleep 1
 echo -e "\e[91m 2.. \e[0m"
 sleep 1
 echo -e "\e[91m 1.. \e[0m"
+sleep 1
 
 AUTO_YES=false
 if [[ "$1" == "--yes" || "$1" == "-y" ]]; then
