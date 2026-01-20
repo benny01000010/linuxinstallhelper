@@ -2,8 +2,14 @@
 This script package installs helpful tools on a fresh Linux install. This tool can also help update your system, if you like. 
 
 "installscript" first runs apt update && apt upgrade -y, then prompts you to install the following packages:
-Sudo, curl, ffmpeg, wget, ufw, vim, Git (if not already installed), nmap, and Ollama.
+Sudo, curl, ffmpeg, wget, ufw, vim, Git (if not already installed), and nmap.
 
-Run the command git clone https://github.com/benny01000010/LinuxInstallHelper on your fresh Linux install. Then cd into the LinuxInstallHelper directory, run chmod +x installscript, and finally, run installscript (if logged in as root) or sudo bash installscript (if sudo is already installed and you are logged in as a regular user) to begin the installer!
+**How To Use this Script**
+1. Run this command on your fresh Linux install to clone the repository: git clone https://github.com/benny01000010/linuxinstallhelper
+2. cd into the linuxinstallhelper directory and run this command: chmod +x installscript.sh
+3. Run this command as root: ./installscript.sh **OR** if sudo is already installed run this command: sudo bash ./installscript.sh
+**NOTE** that to install all the packages at once append -y to either of the commands in Step 3.
+Follow the prompts in the installer to get your new Linux installation just a little more robust!
 
-Courtesy of @benny01000010 on Github. Please feel free to contribute! This repository is currently under development. 
+Open an issue or submit a pull request if there are packages you feel should be added.
+Courtesy of @benny01000010 on Github. Please feel free to contribute! 
