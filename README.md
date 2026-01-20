@@ -8,6 +8,7 @@ Sudo, curl, ffmpeg, wget, ufw, vim, Git (if not already installed), and nmap.
 1. Run this command on your fresh Linux install to clone the repository: git clone https://github.com/benny01000010/linuxinstallhelper
 2. cd into the linuxinstallhelper directory and run this command: chmod +x installscript.sh
 3. Run this command as root: ./installscript.sh **OR** if sudo is already installed run this command: sudo bash ./installscript.sh
+
 **NOTE** that to install all the packages at once append -y to either of the commands in Step 3.
 Follow the prompts in the installer to get your new Linux installation just a little more robust!
 
