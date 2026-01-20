@@ -1,7 +1,7 @@
-# LinuxInstallHelper
-This script package installs helpful tools on a fresh Linux install. This tool can also help update your system, if you like. 
+# linuxinstallhelper
+This script package installs helpful tools on a fresh Linux install.
 
-"installscript" first runs apt update && apt upgrade -y, then prompts you to install the following packages:
+"installscript.sh" first runs apt update && apt upgrade -y, then prompts you to install the following packages:
 Sudo, curl, ffmpeg, wget, ufw, vim, Git (if not already installed), and nmap.
 
 **How To Use this Script**
