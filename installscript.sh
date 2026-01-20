@@ -6,7 +6,9 @@
 #Please run this script as root, or use "sudo" if you've already installed it. 
 # If you have already installed sudo on your system, make sure to run sudo bash ./installscript in order to prevent errors.
 
-echo "Starting LinuxInstallHelper script..."
+#To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
+
+echo -e "\e[32m Starting linuxinstallhelper script... \e[0m"
 cat <<'EOF'
     ____  _                             ___  _  ___   ___   ___   ___  _  ___  
    / __ \| |__   ___ _ __  _ __  _   _ / _ \/ |/ _ \ / _ \ / _ \ / _ \/ |/ _ \ 
@@ -20,7 +22,7 @@ cat <<'EOF'
                 |___/                                                          
 EOF
 
-echo "Updating packages..."
+echo -e "\e[32m Updating packages...\e[0m"
 apt update
 apt upgrade -y
 
@@ -62,4 +64,4 @@ ask_isntall "nfs" "apt install nfs -y"
 ask_install "samba" "apt install samba -y"
 
 echo -e "\e[32m All selected packages have been installed successfully. \e[0m"
-echo "Exiting LinuxinstallHelper script..."
+echo -e "\e[32m Exiting linuxinstallscript... \e[0m"
