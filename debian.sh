@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This file, when executed, will promt you to install the following helpful tools/application on your Linux system:
-#sudo, curl, ffmpeg, git, nmap, ufw, wget, and vim. 
+#sudo, curl, ffmpeg, git, nmap, ufw, wget, docker, and vim. 
 
 #Please run this script as root, or use "sudo" if you've already installed it. 
 # If you have already installed sudo on your system, make sure to run sudo bash ./installscript in order to prevent errors.
@@ -10,11 +10,7 @@
 
 echo -e "\e[32m Starting linuxinstallhelper script... \e[0m"
 
-BLUE='\033[34m'
-NC='\033[0m' 
-
 cat <<'EOF'
-${BLUE}
     ____  _                             ___  _  ___   ___   ___   ___  _  ___  
    / __ \| |__   ___ _ __  _ __  _   _ / _ \/ |/ _ \ / _ \ / _ \ / _ \/ |/ _ \ 
   / / _` | '_ \ / _ \ '_ \| '_ \| | | | | | | | | | | | | | | | | | | | | | | |
@@ -25,7 +21,6 @@ ${BLUE}
  | (_) | | | | | (_| | | |_| | | | |_| | |_) |                                 
   \___/|_| |_|  \__, |_|\__|_| |_|\__,_|_.__/                                  
                 |___/                                                          
-${NC}
 EOF
 
 echo -e "\e[32m Updating packages...\e[0m"
@@ -57,6 +52,8 @@ ask_install() {
     fi
 }
 
+apt autoremove -y
+
 # Apt packages
 ask_install "sudo" "apt install sudo -y"
 ask_install "curl" "apt install curl -y"
@@ -68,6 +65,7 @@ ask_install "wget" "apt-get install wget -y"
 ask_install "vim" "apt install vim -y"
 ask_isntall "nfs" "apt install nfs -y"
 ask_install "samba" "apt install samba -y"
+ask_install "docker" "apt install docker -y"
 
 echo -e "\e[32m All selected packages have been installed successfully. \e[0m"
-echo -e "\e[32m Exiting linuxinstallscript... \e[0m"
+echo -e "\e[32m Exiting linuxinstallhelper... \e[0m"
