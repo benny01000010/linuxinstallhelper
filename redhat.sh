@@ -33,23 +33,23 @@ echo -e "\e[32m Updating and upgrading existing packages...\e[0m"
 
 dnf update -y
 
-echo -e "\e[91m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
-echo -e "\e[91m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
-echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
-sleep 1
-echo -e "\e[91m 4.. \e[0m"
-sleep 1
-echo -e "\e[91m 3.. \e[0m"
-sleep 1
-echo -e "\e[91m 2.. \e[0m"
-sleep 1
-echo -e "\e[91m 1.. \e[0m"
-sleep 1
-
 AUTO_YES=false
 if [[ "$1" == "--yes" || "$1" == "-y" ]]; then
     AUTO_YES=true
-    echo -e "\e[32m Auto-installing all packages... \e[0m"
+    echo -e "\e[32m Auto-installing all packages... \e[0m" && sleep 2
+else
+    echo -e "\e[32m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
+    echo -e "\e[32m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
+    echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
+    sleep 1
+    echo -e "\e[91m 4.. \e[0m"
+    sleep 1
+    echo -e "\e[91m 3.. \e[0m"
+    sleep 1
+    echo -e "\e[91m 2.. \e[0m"
+    sleep 1
+    echo -e "\e[91m 1.. \e[0m"
+    sleep 1
 fi
 
 ask_install() {

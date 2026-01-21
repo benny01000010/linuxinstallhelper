@@ -53,7 +53,7 @@ Red Hat:
   - iotop
   - lsof
 
-**In Development**
+# In Development
   - Support for Arch Linux
   - Add a clause to the scripts that will prompt you and restart your computer if a kernel update is needed.
 
