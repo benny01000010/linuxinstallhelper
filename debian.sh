@@ -9,6 +9,8 @@
 #To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
 
 echo -e "\e[32m Welcome to linuxinstallhelper script... \e[0m"
+echo -e "\e[91m This script is intended for Debian based distributions. \e[0m"\
+echo -e "\e[91m If you are not running DEBIAN/UBUNTU Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
 
 printf '\033[34m'
 
