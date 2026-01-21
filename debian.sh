@@ -8,7 +8,7 @@
 # A full list of packages that will be installed by this script can be found in the README.md file.
 
 echo -e "\e[32m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[91m This script is intended for Debian based distributions. \e[0m"\
+echo -e "\e[91m This script is intended for Debian based distributions. \e[0m"
 echo -e "\e[91m If you are not running DEBIAN/UBUNTU Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
 echo -e "\e[91m This script is compatible with Debian 8 and later as well as Ubuntu 16.04 and later. \e[0m"
 sleep 1
@@ -36,8 +36,8 @@ echo -e "\e[32m Updating and upgrading existing packages...\e[0m"
 apt update
 apt upgrade -y
 
-echo -e "\e[91m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
-echo -e "\e[91m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
+echo -e "\e[32m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
+echo -e "\e[32m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
 echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
 sleep 1
 echo -e "\e[91m 4.. \e[0m"
@@ -86,7 +86,7 @@ ask_install "git" "apt install git -y"
 ask_install "ufw" "apt install ufw -y"
 ask_install "wget" "apt install wget -y"
 ask_install "vim" "apt install vim -y"
-ask_install "nfs" "apt install nfs -y"
+ask_install "nfs client" "apt install nfs-common -y"
 ask_install "samba" "apt install samba -y"
 ask_install "docker" "apt install docker -y && systemctl start docker && systemctl enable docker"
 ask_install "net-tools" "apt install net-tools -y"
