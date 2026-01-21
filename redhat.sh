@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 
 # Please run this script as root, or use "sudo" if you've already installed it. 
-# If you have already installed sudo on your system, make sure to run sudo bash ./debian.sh in order to prevent errors.
+# If you have already installed sudo on your system, make sure to run sudo bash ./redhat.sh in order to prevent errors.
 
-# To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
-
-# A full list of packages that will be installed by this script can be found in the README.md file.
+#To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
 
 echo -e "\e[32m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[91m This script is intended for Debian based distributions. \e[0m"\
-echo -e "\e[91m If you are not running DEBIAN/UBUNTU Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
-echo -e "\e[91m This script is compatible with Debian 8 and later as well as Ubuntu 16.04 and later. \e[0m"
+echo -e "\e[91m This script is intended for Red Hat based distributions. \e[0m"
+echo -e "\e[91m If you are not running RED HAT Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
+sleep 1
+echo -e "\e[91m This script is compatible with Red Hat Enterprise Linux (RHEL) versions 8 and later. \e[0m"
 sleep 1
 
 printf '\033[34m'
@@ -30,11 +29,9 @@ EOF
 
 printf '\033[0m'
 
-sleep 1
-
 echo -e "\e[32m Updating and upgrading existing packages...\e[0m"
-apt update
-apt upgrade -y
+
+dnf update -y
 
 echo -e "\e[91m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
 echo -e "\e[91m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
@@ -75,25 +72,26 @@ ask_install() {
 }
 
 echo -e "\e[32m Autoremoving packages that are no longer needed... \e[0m"
-apt autoremove -y
+dnf autoremove -y
 
 # Apt packages
-ask_install "sudo" "apt install sudo -y"
-ask_install "curl" "apt install curl -y"
-ask_install "ffmpeg" "apt install ffmpeg -y"
-ask_install "nmap" "apt install nmap -y"
-ask_install "git" "apt install git -y"
-ask_install "ufw" "apt install ufw -y"
-ask_install "wget" "apt install wget -y"
-ask_install "vim" "apt install vim -y"
-ask_install "nfs" "apt install nfs -y"
-ask_install "samba" "apt install samba -y"
-ask_install "docker" "apt install docker -y && systemctl start docker && systemctl enable docker"
-ask_install "net-tools" "apt install net-tools -y"
-ask_install "htop" "apt install htop -y"
-ask_install "tree" "apt install tree -y"
-ask_install "iotop" "apt install iotop -y"
-ask_install "lsof" "apt install lsof -y"
-ask_install "rsync" "apt install rsync -y"
+ask_install "epel-release" "dnf install epel-release -y"
+ask_install "sudo" "dnf install sudo -y"
+ask_install "curl" "dnf install curl -y"
+ask_install "nmap" "dnf install nmap -y"
+ask_install "git" "dnf install git -y"
+ask_install "firewalld" "dnf install firewalld -y"
+ask_install "wget" "dnf install wget -y"
+ask_install "vim" "dnf install vim -y"
+ask_install "nfs-utils" "dnf install nfs-utils -y"
+ask_install "samba" "dnf install samba-client -y"
+ask_install "podman" "dnf install podman -y"
+ask_install "rsync" "dnf install rsync -y"
+ask_install "net-tools" "dnf install net-tools -y"
+ask_install "openssh-server" "dnf install openssh-server -y"
+ask_install "htop" "dnf install htop -y"
+ask_install "tree" "dnf install tree -y"
+ask_install "iotop" "dnf install iotop -y"
+ask_install "lsof" "dnf install lsof -y"
 
 echo -e "\e[32m All selected packages have been installed successfully. Thank you for using linuxinstallhelper!\e[0m"

@@ -1,8 +1,5 @@
 # linuxinstallhelper
-This script package installs helpful tools on a fresh Linux install.
-
-"installscript.sh" first runs apt update && apt upgrade -y, then prompts you to install the following packages:
-Sudo, curl, ffmpeg, wget, ufw, vim, Git (if not already installed), docker, and nmap.
+This script package installs helpful tools on a fresh Linux install. Fully supported (currently) on Debian based distros and Red Hat.
 
 # Using this Script
 1. Clone this repository (if you have already installed Git) by running the command git clone https://github.com/benny01000010/linuxinstallhelper
@@ -16,10 +13,49 @@ Sudo, curl, ffmpeg, wget, ufw, vim, Git (if not already installed), docker, and 
 If you do not append -y to your command, you will be prompted before each package installs to either accept or decline the installation. 
 If you forget the -y flag, don't worry, just Ctrl+C and re-run the command. The installer will remind you of this as well.
 
+**Full Packages List**
+Debian/Ubuntu:
+  - sudo
+  - curl
+  - ffmpeg
+  - nmap
+  - git
+  - ufw
+  - wget
+  - vim
+  - nfs
+  - samba
+  - docker (the script will also start and enable docker as a system service)
+  - net-tools
+  - htop
+  - tree
+  - iotop
+  - lsof
+  - rsync
+
+Red Hat:
+  - EPEL
+  - sudo
+  - curl
+  - nmap
+  - git
+  - firewalld
+  - wget
+  - vim
+  - nfs-utils
+  - samba
+  - podman
+  - rsync
+  - net-tools
+  - openssh-server
+  - htop
+  - tree
+  - iotop
+  - lsof
+
+**In Development**
+  - Support for Arch Linux
+  - Add a clause to the scripts that will prompt you and restart your computer if a kernel update is needed.
+
 Open an issue or submit a pull request if there are packages you feel should be added.
 Courtesy of @benny01000010 on Github. Please feel free to contribute! 
-
-**Currently In Development**
-- A version compatible with Red Hat
-- A version compatible with Arch
-- An addition to the script that can reboot your system if a kernel update is detected when running apt update && apt upgrade
