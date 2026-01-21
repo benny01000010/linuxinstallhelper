@@ -7,11 +7,12 @@
 
 # A full list of packages that will be installed by this script can be found in the README.md file.
 
-echo -e "\e[32m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[91m This script is intended for Debian based distributions. \e[0m"
-echo -e "\e[91m If you are not running DEBIAN/UBUNTU Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
-echo -e "\e[91m This script is compatible with Debian 8 and later as well as Ubuntu 16.04 and later. \e[0m"
-sleep 1
+
+echo -e "\e[34m Welcome to linuxinstallhelper script... \e[0m"
+echo -e "\e[33m This script is intended for Debian based distributions. \e[0m" # Compatibility information and warning
+echo -e "\e[33m If you are not running DEBIAN/UBUNTU Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
+echo -e "\e[33m This script is compatible with Debian 8 and later as well as Ubuntu 16.04 and later. \e[0m"
+sleep 3
 
 printf '\033[34m'
 
@@ -32,50 +33,60 @@ printf '\033[0m'
 
 sleep 1
 
-echo -e "\e[32m Updating and upgrading existing packages...\e[0m"
-apt update
-apt upgrade -y
-
-AUTO_YES=false
-if [[ "$1" == "--yes" || "$1" == "-y" ]]; then
-    AUTO_YES=true
-    echo -e "\e[32m Auto-installing all packages... \e[0m" && sleep 2
-else
-    echo -e "\e[32m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
-    echo -e "\e[32m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
-    echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
-    sleep 1
-    echo -e "\e[91m 4.. \e[0m"
-    sleep 1
-    echo -e "\e[91m 3.. \e[0m"
-    sleep 1
-    echo -e "\e[91m 2.. \e[0m"
-    sleep 1
-    echo -e "\e[91m 1.. \e[0m"
-    sleep 1
+if [[ $EUID -ne 0 ]]; then # Checks to see if script is run as root or with sudo
+   echo -e "\e[91m This script must be run as root or with sudo. Exiting... \e[0m" 
+   exit 1
 fi
 
-ask_install() {
-    pkg_name=$1
+echo -e "\e[33m Updating and upgrading existing packages...\e[0m" # Self explanatory
+apt update
+apt upgrade -y
+echo -e "\e[33m Removing unnecessary packages...\e[0m"
+apt autoremove -y
+
+
+AUTO_YES=false  # Determine if auto-install flag is used
+for arg in "$@"; do
+    if [[ "$arg" == "--yes" || "$arg" == "-y" ]]; then
+        AUTO_YES=true
+        break
+    fi
+done
+
+if [[ "$AUTO_YES" = true ]]; then 
+    echo -e "\e[32m Auto-installing all packages... \e[0m" && sleep 2
+else
+    echo -e "\e[33m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
+    echo -e "\e[33m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
+    echo -e "\e[33m Continuing with PROMPTED package installer in 5.. \e[0m"
+    sleep 1
+    echo -e "\e[33m 4.. \e[0m"
+    sleep 1
+    echo -e "\e[33m 3.. \e[0m"
+    sleep 1
+    echo -e "\e[33m 2.. \e[0m"
+    sleep 1
+    echo -e "\e[33m 1.. \e[0m"
+    sleep 1
+
+ask_install() { 
     install_cmd=$2
 
-    if $AUTO_YES; then
-        echo "Installing $pkg_name..."
+    if [[ "$AUTO_YES" = true ]]; then # Auto-installs packages without prompting b/c -y flag used
+        echo -e "\e[32m Installing $pkg_name..."
         eval "$install_cmd"
     else
-        read -p "Install $pkg_name? (Y/n) " choice
+        read -p "\e[33m Install $pkg_name? (Y/n) " choice # Prompts to install each package individually because -y flag not used
+        pkg_name=$1
         choice=${choice:-Y}
         if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-            echo "Installing $pkg_name..."
+            echo -e "\e[32m Installing $pkg_name..."
             eval "$install_cmd"
         else
             echo "Skipping $pkg_name."
         fi
     fi
 }
-
-echo -e "\e[32m Autoremoving packages that are no longer needed... \e[0m"
-apt autoremove -y
 
 # Apt packages
 ask_install "sudo" "apt install sudo -y"
@@ -96,4 +107,5 @@ ask_install "iotop" "apt install iotop -y"
 ask_install "lsof" "apt install lsof -y"
 ask_install "rsync" "apt install rsync -y"
 
-echo -e "\e[32m All selected packages have been installed successfully. Thank you for using linuxinstallhelper!\e[0m"
+echo -e "\e[32m All selected packages have been installed successfully.\e[0m"
+echo -e "\e[34m Thank you for using linuxinstallhelper! @benny01000010 on Github\e[0m"

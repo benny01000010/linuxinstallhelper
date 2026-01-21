@@ -57,5 +57,5 @@ Red Hat:
   - Support for Arch Linux
   - Add a clause to the scripts that will prompt you and restart your computer if a kernel update is needed.
 
-Open an issue or submit a pull request if there are packages you feel should be added.
+Open an issue or submit a pull request if there are packages you feel should be added or if there is a bug that needs fixed. This repository is actively maintained and is still under development!
 Courtesy of @benny01000010 on Github. Please feel free to contribute! 

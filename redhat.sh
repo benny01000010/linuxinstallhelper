@@ -6,11 +6,10 @@
 #To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
 
 echo -e "\e[32m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[91m This script is intended for Red Hat based distributions. \e[0m"
+echo -e "\e[91m This script is intended for Red Hat based distributions. \e[0m" # Compatibility information and warning
 echo -e "\e[91m If you are not running RED HAT Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
-sleep 1
 echo -e "\e[91m This script is compatible with Red Hat Enterprise Linux (RHEL) versions 8 and later. \e[0m"
-sleep 1
+sleep 3
 
 printf '\033[34m'
 
@@ -29,16 +28,28 @@ EOF
 
 printf '\033[0m'
 
-echo -e "\e[32m Updating and upgrading existing packages...\e[0m"
+if [[ $EUID -ne 0 ]]; then # Checks to see if script is run as root or with sudo
+   echo -e "\e[91m This script must be run as root or with sudo. Exiting... \e[0m" 
+   exit 1
+fi
+
+
+echo -e "\e[32m Updating and upgrading existing packages...\e[0m" # Self-explanatory
 
 dnf update -y
 
-AUTO_YES=false
-if [[ "$1" == "--yes" || "$1" == "-y" ]]; then
-    AUTO_YES=true
+AUTO_YES=false # Checks to see if auto-install -y flag is used
+for arg in "$@"; do
+    if [[ "$arg" == "--yes" || "$arg" == "-y" ]]; then
+        AUTO_YES=true
+        break
+    fi
+done
+
+if [[ "$AUTO_YES" = true ]]; then
     echo -e "\e[32m Auto-installing all packages... \e[0m" && sleep 2
 else
-    echo -e "\e[32m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
+    echo -e "\e[32m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m" 
     echo -e "\e[32m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
     echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
     sleep 1
@@ -52,15 +63,15 @@ else
     sleep 1
 fi
 
-ask_install() {
+ask_install() { 
     pkg_name=$1
     install_cmd=$2
 
-    if $AUTO_YES; then
-        echo "Installing $pkg_name..."
+    if [[ "$AUTO_YES" = true ]]; then
+        echo "Installing $pkg_name..." # auto installs all packages since -y flag used
         eval "$install_cmd"
     else
-        read -p "Install $pkg_name? (Y/n) " choice
+        read -p "Install $pkg_name? (Y/n) " choice # prompts to install or decline for each individual package since -y flag not used
         choice=${choice:-Y}
         if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
             echo "Installing $pkg_name..."
