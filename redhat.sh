@@ -5,9 +5,9 @@
 
 #To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
 
-echo -e "\e[32m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[91m This script is intended for Red Hat based distributions. Compatible with RHEL versions 8 and later. \e[0m" # Compatibility information and warning
-echo -e "\e[91m If you are not running RED HAT Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
+echo -e "\e[34m Welcome to linuxinstallhelper script... \e[0m"
+echo -e "\e[33m This script is intended for Red Hat based distributions. Compatible with RHEL versions 8 and later. \e[0m" # Compatibility information and warning
+echo -e "\e[33m If you are not running RED HAT Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
 sleep 3
 
 printf '\033[34m'
@@ -32,10 +32,11 @@ if [[ $EUID -ne 0 ]]; then # Checks to see if script is run as root or with sudo
    exit 1
 fi
 
-
-echo -e "\e[32m Updating and upgrading existing packages...\e[0m" # Self-explanatory
-
-dnf update -y
+echo -e "\e[33m Updating and upgrading existing packages...\e[0m" # Self-explanatory
+dnf upgrade -y
+echo -e "\e[33m Autoremoving packages that are no longer needed... \e[0m"
+dnf autoremove -y
+echo -e "\e[32m Existing packages updated and unnecessary packages removed successfully.\e[0m"
 
 AUTO_YES=false # Checks to see if auto-install -y flag is used
 for arg in "$@"; do
@@ -48,17 +49,17 @@ done
 if [[ "$AUTO_YES" = true ]]; then
     echo -e "\e[32m Auto-installing all packages... \e[0m" && sleep 2
 else
-    echo -e "\e[32m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m" 
-    echo -e "\e[32m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
-    echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
+    echo -e "\e[33m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m" 
+    echo -e "\e[33m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
+    echo -e "\e[33m Continuing with PROMPTED package installer in 5.. \e[0m"
     sleep 2
-    echo -e "\e[91m 4.. \e[0m"
+    echo -e "\e[33m 4.. \e[0m"
     sleep 1
-    echo -e "\e[91m 3.. \e[0m"
+    echo -e "\e[33m 3.. \e[0m"
     sleep 1
-    echo -e "\e[91m 2.. \e[0m"
+    echo -e "\e[33m 2.. \e[0m"
     sleep 1
-    echo -e "\e[91m 1.. \e[0m"
+    echo -e "\e[33m 1.. \e[0m"
     sleep 1
 fi
 
@@ -81,9 +82,6 @@ ask_install() {
     fi
 }
 
-echo -e "\e[32m Autoremoving packages that are no longer needed... \e[0m"
-dnf autoremove -y
-
 # Apt packages
 ask_install "epel-release" "dnf install epel-release -y"
 ask_install "sudo" "dnf install sudo -y"
@@ -104,4 +102,5 @@ ask_install "tree" "dnf install tree -y"
 ask_install "iotop" "dnf install iotop -y"
 ask_install "lsof" "dnf install lsof -y"
 
-echo -e "\e[32m All selected packages have been installed successfully. Thank you for using linuxinstallhelper!\e[0m"
+echo -e "\e[32m All selected packages have been installed successfully.\e[0m"
+echo -e "\e[34m Thank you for using linuxinstallhelper! @benny01000010 on Github\e[0m"

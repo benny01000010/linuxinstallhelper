@@ -37,12 +37,11 @@ if [[ $EUID -ne 0 ]]; then # Checks to see if script is run as root or with sudo
    exit 1
 fi
 
-echo -e "\e[33m Updating and upgrading existing packages...\e[0m" # Self explanatory
-apt update
-apt upgrade -y
+echo -e "\e[33m Updating and upgrading existing packages...\e[0m" # Self-explanatory
+apt update -y && apt upgrade -y
 echo -e "\e[33m Removing unnecessary packages...\e[0m"
 apt autoremove -y
-
+echo -e "\e[32m Existing packages updated and unnecessary packages removed successfully.\e[0m"
 
 AUTO_YES=false  # Determine if auto-install flag is used
 for arg in "$@"; do
@@ -53,7 +52,8 @@ for arg in "$@"; do
 done
 
 if [[ "$AUTO_YES" = true ]]; then 
-    echo -e "\e[32m Auto-installing all packages... \e[0m" && sleep 2
+    echo -e "\e[32m Auto-installing all packages... \e[0m"
+    sleep 2
 else
     echo -e "\e[33m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
     echo -e "\e[33m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
@@ -70,14 +70,15 @@ else
 fi
 
 ask_install() { 
+    pkg_name=$1
     install_cmd=$2
 
     if [[ "$AUTO_YES" = true ]]; then # Auto-installs packages without prompting b/c -y flag used
-        echo -e "\e[32m Installing $pkg_name..."
+        echo -e "\e[32m Installing $pkg_name...\e[0m"
         eval "$install_cmd"
     else
-        read -p "Install $pkg_name? (Y/n) " choice # Prompts to install each package individually because -y flag not used
-        pkg_name=$1
+        echo -n -e "\e[33mInstall $pkg_name? (Y/n) \e[0m"
+        read choice
         choice=${choice:-Y}
         if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
             echo -e "\e[32m Installing $pkg_name...\e[0m"
