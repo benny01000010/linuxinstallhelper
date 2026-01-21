@@ -9,9 +9,8 @@
 
 
 echo -e "\e[34m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[33m This script is intended for Debian based distributions. \e[0m" # Compatibility information and warning
+echo -e "\e[33m This script is intended for Debian based distributions. Compatible with Debian 8 and Ubuntu 16.04 and later. \e[0m" # Compatibility information and warning
 echo -e "\e[33m If you are not running DEBIAN/UBUNTU Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
-echo -e "\e[33m This script is compatible with Debian 8 and later as well as Ubuntu 16.04 and later. \e[0m"
 sleep 3
 
 printf '\033[34m'
@@ -59,7 +58,7 @@ else
     echo -e "\e[33m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m"
     echo -e "\e[33m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
     echo -e "\e[33m Continuing with PROMPTED package installer in 5.. \e[0m"
-    sleep 1
+    sleep 2
     echo -e "\e[33m 4.. \e[0m"
     sleep 1
     echo -e "\e[33m 3.. \e[0m"
@@ -77,11 +76,11 @@ ask_install() {
         echo -e "\e[32m Installing $pkg_name..."
         eval "$install_cmd"
     else
-        read -p "\e[33m Install $pkg_name? (Y/n) " choice # Prompts to install each package individually because -y flag not used
+        read -p "Install $pkg_name? (Y/n) " choice # Prompts to install each package individually because -y flag not used
         pkg_name=$1
         choice=${choice:-Y}
         if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-            echo -e "\e[32m Installing $pkg_name..."
+            echo -e "\e[32m Installing $pkg_name...\e[0m"
             eval "$install_cmd"
         else
             echo "Skipping $pkg_name."

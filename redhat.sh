@@ -6,9 +6,8 @@
 #To auto install all packages at once, append "-y" or "--yes" to the end of your command to execute this script. More details can be found in the README.md file.
 
 echo -e "\e[32m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[91m This script is intended for Red Hat based distributions. \e[0m" # Compatibility information and warning
+echo -e "\e[91m This script is intended for Red Hat based distributions. Compatible with RHEL versions 8 and later. \e[0m" # Compatibility information and warning
 echo -e "\e[91m If you are not running RED HAT Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
-echo -e "\e[91m This script is compatible with Red Hat Enterprise Linux (RHEL) versions 8 and later. \e[0m"
 sleep 3
 
 printf '\033[34m'
@@ -52,7 +51,7 @@ else
     echo -e "\e[32m To install all packages AT ONCE, Ctrl+C then re-execute this script with the --yes or -y flag. \e[0m" 
     echo -e "\e[32m Otherwise, you will be prompted for each package installation. Proceed with caution! \e[0m"
     echo -e "\e[91m Continuing with PROMPTED package installer in 5.. \e[0m"
-    sleep 1
+    sleep 2
     echo -e "\e[91m 4.. \e[0m"
     sleep 1
     echo -e "\e[91m 3.. \e[0m"
