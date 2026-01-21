@@ -68,6 +68,7 @@ else
     sleep 1
     echo -e "\e[33m 1.. \e[0m"
     sleep 1
+fi
 
 ask_install() { 
     install_cmd=$2
