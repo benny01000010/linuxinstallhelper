@@ -1,5 +1,5 @@
 # linuxinstallhelper
-This script package installs helpful tools on a fresh Linux install. Supported (currently) on Debian based distros and Red Hat.
+This script package installs helpful tools on a fresh Linux install. Supported (currently) on Debian based distros, Arch, and Red Hat.
 
 # Using this Script
 1. Clone this repository (if you have already installed Git) by running the command git clone https://github.com/benny01000010/linuxinstallhelper
