@@ -9,9 +9,6 @@
 
 
 echo -e "\e[34m Welcome to linuxinstallhelper script... \e[0m"
-echo -e "\e[33m This script is intended for Debian based distributions. Compatible with Debian 8 and Ubuntu 16.04 and later. \e[0m" # Compatibility information and warning
-echo -e "\e[33m If you are not running DEBIAN/UBUNTU Linux, please Ctrl+C and use the correct script for your distro! \e[0m"
-sleep 3
 
 printf '\033[34m'
 
@@ -30,7 +27,35 @@ EOF
 
 printf '\033[0m'
 
-sleep 1
+sleep 2
+
+detect_distro() { # Checks to see what distro is being used
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        DISTRO=$ID
+        DISTRO_LIKE=$ID_LIKE
+    elif [ -f /etc/arch-release ]; then
+        DISTRO="arch"
+    else
+        DISTRO="unknown"
+    fi
+}
+
+check_debian() { # Ensures that the script is only run on Debian to prevent errors
+    detect_distro
+    
+    # Check if it's Debian or a Debian-based distro
+    if [[ "$DISTRO" == "debian" ]] || [[ "$DISTRO_LIKE" == *"debian"* ]] || [[ "$DISTRO" == "ubuntu" ]] || [[ "$DISTRO_LIKE" == *"ubuntu"* ]]; then
+        return 0
+    else
+        echo -e "\e[91m   ERROR: This script is for Debian Linux only!\e[0m"
+        echo -e "\e[91m   Detected distribution: $DISTRO\e[0m"
+        echo -e "\e[91m   Please use the appropriate script for your distribution.\e[0m"
+        exit 1
+    fi
+}
+
+check_debian()
 
 if [[ $EUID -ne 0 ]]; then # Checks to see if script is run as root or with sudo
    echo -e "\e[91m This script must be run as root or with sudo. Exiting... \e[0m" 
