@@ -76,6 +76,15 @@ for arg in "$@"; do
     fi
 done
 
+SHOW_LOGS=false
+for arg in "$@"; do
+    if [[ "$arg" == "--logs" || "$arg" == "-l" ]]; then
+        SHOW_LOGS=true
+        break
+    fi
+done
+
+
 if [[ "$AUTO_YES" = true ]]; then 
     echo -e "\e[32m Auto-installing all packages... \e[0m"
     sleep 2
@@ -97,6 +106,10 @@ fi
 ask_install() { 
     pkg_name=$1
     install_cmd=$2
+
+    if [[ "$SHOW_LOGS" = true ]]; then
+        install_cmd="$install_cmd > /dev/null 2>&1"
+    fi 
 
     if [[ "$AUTO_YES" = true ]]; then # Auto-installs packages without prompting b/c -y flag used
         echo -e "\e[32m Installing $pkg_name...\e[0m"
@@ -134,4 +147,4 @@ ask_install "lsof" "apt install lsof -y"
 ask_install "rsync" "apt install rsync -y"
 
 echo -e "\e[32m All selected packages have been installed successfully.\e[0m"
-echo -e "\e[34m Thank you for using linuxinstallhelper! @benny01000010 on Github\e[0m"
+echo -e "\e[34m Thank you for using linuxinstallhelper! Please consider "starring" this repository on Github.\e[0m"

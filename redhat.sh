@@ -92,6 +92,10 @@ ask_install() {
     pkg_name=$1
     install_cmd=$2
 
+    if [[ "$SHOW_LOGS" = true ]]; then
+        install_cmd="$install_cmd > /dev/null 2>&1"
+    fi 
+
     if [[ "$AUTO_YES" = true ]]; then
         echo "Installing $pkg_name..." # auto installs all packages since -y flag used
         eval "$install_cmd"
@@ -126,6 +130,7 @@ ask_install "htop" "dnf install htop -y"
 ask_install "tree" "dnf install tree -y"
 ask_install "iotop" "dnf install iotop -y"
 ask_install "lsof" "dnf install lsof -y"
+ask_install "cli-blackjack? It is a command-line blackjack game written by the developer of this installer tool. Accepting the installation will clone the repository from Github, and you can play the game by entering the directory and executing the blackjack.sh script." "git clone https://github.com/benny01000010/cli-blackjack"
 
 echo -e "\e[32m All selected packages have been installed successfully.\e[0m"
-echo -e "\e[34m Thank you for using linuxinstallhelper! @benny01000010 on Github\e[0m"
+echo -e "\e[34m Thank you for using linuxinstallhelper! Please consider "starring" this repository on Github\e[0m"

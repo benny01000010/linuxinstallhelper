@@ -10,8 +10,9 @@ This script package installs helpful tools on a fresh Linux install. Supported (
 
 **NOTE** that to install all the packages at once append -y to your command when executing the .sh file.
 If you do not append -y to your command, you will be prompted before each package installs to either accept or decline the installation. 
-If you forget the -y flag, don't worry, just Ctrl+C and re-run the command. The installer will remind you of this as well.
 The installer will also check your distrobution to make sure you have executed the correct file.
+
+By default, the log output for each "apt install" function is redirected to /dev/null and won't show in the terminal. To change this, append --logs of -l to your command when you execute the script. 
 
 **Full Packages List**
 Debian/Ubuntu:
@@ -77,4 +78,3 @@ Arch:
   - Bugfixes & minor improvements.
 
 Open an issue or submit a pull request if there are packages you feel should be added or if there is a bug that needs fixed. This repository is actively maintained and is still under development!
-Courtesy of @benny01000010 on Github. Please feel free to contribute! 

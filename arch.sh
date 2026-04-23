@@ -95,6 +95,10 @@ ask_install() {
     pkg_name=$1
     install_cmd=$2
 
+    if [[ "$SHOW_LOGS" = true ]]; then
+        install_cmd="$install_cmd > /dev/null 2>&1"
+    fi 
+
     if [[ "$AUTO_YES" = true ]]; then # Auto-installs packages without prompting b/c -y flag used
         echo -e "\e[32m Installing $pkg_name...\e[0m"
         eval "$install_cmd"
